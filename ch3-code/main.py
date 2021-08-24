@@ -25,9 +25,6 @@ else:
 
 app.config.from_object(app_config)
 
-db.init_app(app)
-with app.app_context():
-    db.create_all()
 app.register_blueprint(author_routes, url_prefix='/api/authors')
 app.register_blueprint(book_routes, url_prefix='/api/books')
 app.register_blueprint(user_routes, url_prefix='/api/users')
@@ -59,7 +56,6 @@ def not_found(e):
 jwt = JWTManager(app)
 db.init_app(app)
 with app.app_context():
-    # from api.models import *
     db.create_all()
     
 if __name__ == "__main__":
